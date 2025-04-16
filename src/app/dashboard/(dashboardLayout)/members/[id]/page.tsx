@@ -1,17 +1,12 @@
+import { getSingleMemberUsingId } from "@/server_actions/member_action";
 import Link from "next/link";
 import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const page = async ({ params }: any) => {
   const memberParams = await params;
-  const res = await fetch(
-    `http://localhost:5000/api/members/${memberParams?.id}`,
-    {
-      cache: "no-store", // for SSR
-    }
-  );
+  const member = await getSingleMemberUsingId(memberParams?.id)
 
-  const member = await res.json();
 
   return (
     <div className="max-w-xl mx-auto px-4 py-10 bg-gray-50 rounded-lg shadow-md">
