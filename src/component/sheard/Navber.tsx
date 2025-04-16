@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 const navlinks = [
   { href: "/", label: "Home" },
   { href: "/dashboard/members", label: "Members" },
-  { href: "dashboard/members/add", label: "Add Member" },
+  { href: "/dashboard/members/add", label: "Add Member" },
 ];
 
 export default function Navber() {

@@ -12,14 +12,22 @@ export default function AddMember() {
     membershipType: "Regular",
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (e: any) => {
-    console.log(e.target.name.value);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const members = fetch("https://next-label");
     console.log(formData);
+    e.preventDefault();
+    await fetch("http://localhost:5000/api/members", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    router.push("/dashboard/members");
   };
 
   return (
